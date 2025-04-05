@@ -194,3 +194,332 @@
             width: 20px;
             text-align: center;
         }
+
+        footer {
+            background-color: var(--footer-bg);
+            color: var(--footer-text);
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        #feedback-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        #feedback-form label {
+            font-weight: bold;
+            text-align: left;
+        }
+
+        #feedback {
+            width: 100%;
+            padding: 12px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            min-height: 100px;
+            resize: vertical;
+            font-family: inherit;
+        }
+
+        .dark-mode #feedback {
+            background-color: #333;
+            color: white;
+            border-color: #555;
+        }
+
+        .no-results {
+            text-align: center;
+            grid-column: 1 / -1;
+            padding: 2rem;
+            font-size: 1.2rem;
+            color: var(--text-color);
+        }
+
+        @media (max-width: 768px) {
+            .categories {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            header p {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .controls {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            button {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Animation for category appearance */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .category {
+            animation: fadeIn 0.5s ease-out forwards;
+            opacity: 0;
+        }
+
+        .category:nth-child(1) { animation-delay: 0.1s; }
+        .category:nth-child(2) { animation-delay: 0.2s; }
+        .category:nth-child(3) { animation-delay: 0.3s; }
+        .category:nth-child(4) { animation-delay: 0.4s; }
+        .category:nth-child(5) { animation-delay: 0.5s; }
+        .category:nth-child(6) { animation-delay: 0.6s; }
+        .category:nth-child(7) { animation-delay: 0.7s; }
+        .category:nth-child(8) { animation-delay: 0.8s; }
+        .category:nth-child(9) { animation-delay: 0.9s; }
+        .category:nth-child(10) { animation-delay: 1.0s; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Welcome to Accessible Resource</h1>
+            <p>Thank you for visiting our platform. Explore the features below and share your feedback to help us improve.</p>
+            
+            <div class="search-container">
+                <input type="text" id="search-bar" placeholder="Search for websites or categories...">
+            </div>
+            
+            <div class="controls">
+                <button id="dark-mode-toggle">
+                    <i class="fas fa-moon"></i> Toggle Dark Mode
+                </button>
+                <button id="scroll-top" style="display: none;">
+                    <i class="fas fa-arrow-up"></i> Back to Top
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="categories" id="categories">
+            <!-- Categories will be added by JavaScript -->
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <h3>We value your feedback</h3>
+            <form id="feedback-form">
+                <label for="feedback">Share your thoughts with us:</label>
+                <textarea id="feedback" placeholder="What did you like? How can we improve?"></textarea>
+                <button type="submit"><i class="fas fa-paper-plane"></i> Submit Feedback</button>
+            </form>
+        </div>
+    </footer>
+
+    <script>
+        // Website data with all tools including the new Currency Converter
+        const categories = [
+            {
+                name: "Text Tools",
+                icon: "fas fa-font",
+                links: [
+                    { name: "Text Analyser Pro", url: "https://accessibleresource.github.io/Text-analyser-pro/" },
+                    { name: "Universal Text Encoder & Decoder", url: "https://accessibleresource.github.io/Universal-Text-Encoder-Decoder/" },
+                    { name: "Text to PDF Converter", url: "https://accessibleresource.github.io/Convert-text-to-pdf/" },
+                    { name: "PDF to Text Converter", url: "https://accessibleresource.github.io/Pdf-to-text/" },
+                    { name: "Image to Text Converter", url: "https://accessibleresource.github.io/Image-to-text/" }
+                ]
+            },
+            {
+                name: "Generators",
+                icon: "fas fa-cogs",
+                links: [
+                    { name: "AI Text to Image Generator", url: "https://accessibleresource.github.io/Text-to-image-generator/" },
+                    { name: "Strong Password Generator", url: "https://accessibleresource.github.io/Password-generator/" },
+                    { name: "Baby Name Generator", url: "https://accessibleresource.github.io/Baby-name-generator/" }
+                ]
+            },
+            {
+                name: "Calculators",
+                icon: "fas fa-calculator",
+                links: [
+                    { name: "Simple Calculator", url: "https://accessibleresource.github.io/Simple-calculator/" },
+                    { name: "Currency Converter", url: "https://accessibleresource.github.io/Currency-converter/" }
+                ]
+            },
+            {
+                name: "Games",
+                icon: "fas fa-gamepad",
+                links: [
+                    { name: "Math Quiz Game", url: "https://accessibleresource.github.io/Math-quiz-game/" },
+                    { name: "Quiz Game", url: "https://accessibleresource.github.io/Quiz-game/" }
+                ]
+            },
+            {
+                name: "PDF Tools",
+                icon: "fas fa-file-pdf",
+                links: [
+                    { name: "PDF Merger", url: "https://accessibleresource.github.io/Pdf-merger/" }
+                ]
+            },
+            {
+                name: "Community",
+                icon: "fas fa-users",
+                links: [
+                    { name: "Telegram Channel", url: "https://t.me/shopnotamal" }
+                ]
+            }
+        ];
+
+        // DOM elements
+        const categoriesContainer = document.getElementById('categories');
+        const searchBar = document.getElementById('search-bar');
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        const scrollTopButton = document.getElementById('scroll-top');
+        const feedbackForm = document.getElementById('feedback-form');
+
+        // Initialize the page
+        function initPage() {
+            renderCategories(categories);
+            setupEventListeners();
+            checkScrollPosition();
+            
+            // Load dark mode preference from localStorage
+            if (localStorage.getItem('darkMode') === 'enabled') {
+                document.body.classList.add('dark-mode');
+                darkModeToggle.innerHTML = '<i class="fas fa-sun"></i> Toggle Light Mode';
+            }
+        }
+
+        // Render all categories
+        function renderCategories(categoriesData) {
+            categoriesContainer.innerHTML = '';
+            
+            if (categoriesData.length === 0) {
+                categoriesContainer.innerHTML = '<div class="no-results">No results found. Try a different search term.</div>';
+                return;
+            }
+            
+            categoriesData.forEach((category, index) => {
+                const categoryElement = document.createElement('div');
+                categoryElement.className = 'category';
+                
+                let linksHTML = '';
+                category.links.forEach(link => {
+                    linksHTML += `
+                        <li>
+                            <a href="${link.url}" target="_blank" rel="noopener noreferrer">
+                                <i class="fas fa-external-link-alt"></i> ${link.name}
+                            </a>
+                        </li>
+                    `;
+                });
+                
+                categoryElement.innerHTML = `
+                    <h2><i class="${category.icon}"></i> ${category.name}</h2>
+                    <ul>${linksHTML}</ul>
+                `;
+                
+                categoriesContainer.appendChild(categoryElement);
+            });
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Search functionality
+            searchBar.addEventListener('input', () => {
+                const searchTerm = searchBar.value.toLowerCase();
+                
+                if (searchTerm.length === 0) {
+                    renderCategories(categories);
+                    return;
+                }
+                
+                const filteredCategories = categories.map(category => {
+                    const matchingLinks = category.links.filter(link => 
+                        link.name.toLowerCase().includes(searchTerm) || 
+                        category.name.toLowerCase().includes(searchTerm)
+                    );
+                    
+                    return {
+                        ...category,
+                        links: matchingLinks
+                    };
+                }).filter(category => category.links.length > 0);
+                
+                renderCategories(filteredCategories);
+            });
+            
+            // Dark mode toggle
+            darkModeToggle.addEventListener('click', () => {
+                document.body.classList.toggle('dark-mode');
+                
+                if (document.body.classList.contains('dark-mode')) {
+                    localStorage.setItem('darkMode', 'enabled');
+                    darkModeToggle.innerHTML = '<i class="fas fa-sun"></i> Toggle Light Mode';
+                } else {
+                    localStorage.setItem('darkMode', 'disabled');
+                    darkModeToggle.innerHTML = '<i class="fas fa-moon"></i> Toggle Dark Mode';
+                }
+            });
+            
+            // Scroll to top button
+            scrollTopButton.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Feedback form submission
+            feedbackForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const feedbackText = document.getElementById('feedback').value;
+                
+                if (feedbackText.trim() === '') {
+                    alert('Please enter your feedback before submitting.');
+                    return;
+                }
+                
+                // In a real application, you would send this to a server
+                console.log('Feedback submitted:', feedbackText);
+                alert('Thank you for your feedback! We appreciate your input.');
+                document.getElementById('feedback').value = '';
+            });
+            
+            // Show/hide scroll to top button based on scroll position
+            window.addEventListener('scroll', checkScrollPosition);
+        }
+
+        // Check scroll position for scroll-to-top button
+        function checkScrollPosition() {
+            if (window.pageYOffset > 300) {
+                scrollTopButton.style.display = 'flex';
+            } else {
+                scrollTopButton.style.display = 'none';
+            }
+        }
+
+        // Initialize the page when DOM is loaded
+        document.addEventListener('DOMContentLoaded', initPage);
+    </script>
+</body>
+</html>
