@@ -3,523 +3,450 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accessible Resource Hub</title>
+    <title>ToolNova Pro | Your All-in-One Tool Hub</title>
     <style>
         :root {
-            --primary-color: #4CAF50;
-            --secondary-color: #2c6e49;
-            --bg-color: #f9f9f9;
+            --primary-color: #4a6bff;
             --text-color: #333;
-            --header-bg: #4CAF50;
-            --header-text: white;
-            --footer-bg: #f1f1f1;
-            --card-bg: white;
-            --card-shadow: rgba(0, 0, 0, 0.1);
+            --bg-color: #f5f7ff;
+            --card-bg: #ffffff;
+            --header-bg: #ffffff;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
         }
 
         .dark-mode {
-            --primary-color: #4CAF50;
-            --secondary-color: #8bc34a;
+            --primary-color: #6b8cff;
+            --text-color: #f0f0f0;
             --bg-color: #121212;
-            --text-color: #f5f5f5;
-            --header-bg: #1e1e1e;
-            --header-text: #f5f5f5;
-            --footer-bg: #1e1e1e;
-            --footer-text: #f5f5f5;
             --card-bg: #1e1e1e;
-            --card-shadow: rgba(255, 255, 255, 0.05);
+            --header-bg: #1a1a1a;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
 
         * {
-            transition: background-color 0.3s, color 0.3s;
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
+            transition: var(--transition);
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.6;
         }
 
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
         header {
             background-color: var(--header-bg);
-            color: var(--header-text);
-            padding: 2rem 1rem;
-            text-align: center;
-            position: relative;
+            padding: 20px 0;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
         }
 
         .header-content {
-            max-width: 1200px;
-            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         h1 {
-            margin: 0;
-            font-size: 2.5rem;
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            margin-bottom: 10px;
         }
 
-        header p {
-            margin: 1rem auto;
+        .welcome-section {
+            text-align: center;
+            padding: 40px 20px;
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            margin-bottom: 40px;
+        }
+
+        .welcome-text {
             max-width: 800px;
+            margin: 0 auto 25px;
             font-size: 1.1rem;
+            color: var(--text-color);
         }
 
         .search-container {
-            display: flex;
-            justify-content: center;
-            margin: 1.5rem 0;
-            position: relative;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
+            margin: 20px auto;
+            max-width: 600px;
         }
 
-        #search-bar {
+        #search {
             width: 100%;
             padding: 12px 20px;
-            border: none;
+            border: 2px solid var(--primary-color);
             border-radius: 30px;
             font-size: 1rem;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            background-color: var(--card-bg);
+            color: var(--text-color);
         }
 
-        #search-bar:focus {
+        #search:focus {
             outline: none;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 0 0 3px rgba(74, 107, 255, 0.3);
         }
 
-        .dark-mode #search-bar {
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-        }
-
-        .dark-mode #search-bar:focus {
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
-        }
-
-        .controls {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        button {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 30px;
-            background-color: var(--secondary-color);
+        .theme-toggle {
+            background: var(--primary-color);
             color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 30px;
             cursor: pointer;
-            font-size: 1rem;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            transition: transform 0.2s, background-color 0.3s;
+            gap: 8px;
+            font-weight: 600;
         }
 
-        button:hover {
-            background-color: var(--primary-color);
-            transform: translateY(-2px);
-        }
-
-        button:active {
-            transform: translateY(0);
-        }
-
-        main {
-            padding: 2rem 1rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .categories {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
+        .theme-toggle:hover {
+            opacity: 0.9;
         }
 
         .category {
-            background-color: var(--card-bg);
-            border-radius: 10px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 6px var(--card-shadow);
-            transition: transform 0.3s;
+            margin-bottom: 40px;
         }
 
-        .category:hover {
+        .category-title {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .tool-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: var(--shadow);
+            transition: transform 0.2s ease;
+        }
+
+        .tool-card:hover {
             transform: translateY(-5px);
         }
 
-        .category h2 {
-            margin-top: 0;
+        .tool-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
             color: var(--primary-color);
-            border-bottom: 2px solid var(--primary-color);
-            padding-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
         }
 
-        .category ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 1rem 0 0 0;
-        }
-
-        .category li {
-            margin-bottom: 0.8rem;
-        }
-
-        .category a {
+        .tool-link {
             text-decoration: none;
-            color: var(--text-color);
+            color: inherit;
             display: block;
-            padding: 0.5rem;
-            border-radius: 5px;
-            transition: background-color 0.3s, color 0.3s;
         }
 
-        .category a:hover {
-            background-color: var(--primary-color);
-            color: white;
-            padding-left: 1rem;
-        }
-
-        .category a i {
-            margin-right: 0.5rem;
-            width: 20px;
-            text-align: center;
-        }
-
-        footer {
-            background-color: var(--footer-bg);
-            color: var(--footer-text);
-            padding: 2rem 1rem;
-            text-align: center;
-        }
-
-        .footer-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        #feedback-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        #feedback-form label {
-            font-weight: bold;
-            text-align: left;
-        }
-
-        #feedback {
-            width: 100%;
-            padding: 12px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            min-height: 100px;
-            resize: vertical;
-            font-family: inherit;
-        }
-
-        .dark-mode #feedback {
-            background-color: #333;
-            color: white;
-            border-color: #555;
+        .tool-link:hover .tool-title {
+            text-decoration: underline;
         }
 
         .no-results {
             text-align: center;
-            grid-column: 1 / -1;
-            padding: 2rem;
+            padding: 40px;
             font-size: 1.2rem;
-            color: var(--text-color);
+            grid-column: 1 / -1;
         }
 
         @media (max-width: 768px) {
-            .categories {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .tools-grid {
                 grid-template-columns: 1fr;
             }
-            
-            h1 {
-                font-size: 2rem;
-            }
-            
-            header p {
-                font-size: 1rem;
-            }
         }
-
-        @media (max-width: 480px) {
-            .controls {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            button {
-                width: 100%;
-                justify-content: center;
-            }
-        }
-
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Animation for category appearance */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .category {
-            animation: fadeIn 0.5s ease-out forwards;
-            opacity: 0;
-        }
-
-        .category:nth-child(1) { animation-delay: 0.1s; }
-        .category:nth-child(2) { animation-delay: 0.2s; }
-        .category:nth-child(3) { animation-delay: 0.3s; }
-        .category:nth-child(4) { animation-delay: 0.4s; }
-        .category:nth-child(5) { animation-delay: 0.5s; }
-        .category:nth-child(6) { animation-delay: 0.6s; }
-        .category:nth-child(7) { animation-delay: 0.7s; }
-        .category:nth-child(8) { animation-delay: 0.8s; }
-        .category:nth-child(9) { animation-delay: 0.9s; }
-        .category:nth-child(10) { animation-delay: 1.0s; }
     </style>
 </head>
 <body>
     <header>
-        <div class="header-content">
-            <h1>Welcome to Accessible Resource</h1>
-            <p>Thank you for visiting our platform. Explore the features below and share your feedback to help us improve.</p>
-            
-            <div class="search-container">
-                <input type="text" id="search-bar" placeholder="Search for websites or categories...">
-            </div>
-            
-            <div class="controls">
-                <button id="dark-mode-toggle">
-                    <i class="fas fa-moon"></i> Toggle Dark Mode
-                </button>
-                <button id="scroll-top" style="display: none;">
-                    <i class="fas fa-arrow-up"></i> Back to Top
-                </button>
-            </div>
+        <div class="container header-content">
+            <h1>ToolNova Pro</h1>
+            <button class="theme-toggle" id="themeToggle">
+                <span id="themeIcon">🌙</span> Dark Mode
+            </button>
         </div>
     </header>
 
-    <main>
-        <div class="categories" id="categories">
-            <!-- Categories will be added by JavaScript -->
-        </div>
-    </main>
+    <div class="container">
+        <section class="welcome-section">
+            <h1>Welcome to ToolNova Pro</h1>
+            <p class="welcome-text">
+                This application has been created by Accessible Resource. Your all-in-one tool hub for a seamless experience. 
+                Explore all tools and share your feedback. With your love and support, many more tools will be added in the future.
+            </p>
+            <div class="search-container">
+                <input type="text" id="search" placeholder="Search tools by name or category...">
+            </div>
+        </section>
 
-    <footer>
-        <div class="footer-content">
-            <h3>We value your feedback</h3>
-            <form id="feedback-form">
-                <label for="feedback">Share your thoughts with us:</label>
-                <textarea id="feedback" placeholder="What did you like? How can we improve?"></textarea>
-                <button type="submit"><i class="fas fa-paper-plane"></i> Submit Feedback</button>
-            </form>
+        <div id="toolsContainer">
+            <!-- Text Tools -->
+            <section class="category">
+                <h2 class="category-title">Text Tools</h2>
+                <div class="tools-grid">
+                    <div class="tool-card" data-category="text" data-name="Text analyser pro">
+                        <a href="https://accessibleresource.github.io/Text-analyser-pro/" class="tool-link" target="_blank">
+                            <h3 class="tool-title">Text analyser pro</h3>
+                        </a>
+                    </div>
+                    <div class="tool-card" data-category="text" data-name="Universal Text Encoder & Decoder">
+                        <a href="https://accessibleresource.github.io/Universal-Text-Encoder-Decoder/" class="tool-link" target="_blank">
+                            <h3 class="tool-title">Universal Text Encoder & Decoder</h3>
+                        </a>
+                    </div>
+                    <div class="tool-card" data-category="text" data-name="Quick fixed text">
+                        <a href="https://accessibleresource.github.io/Quick-fixed-text/" class="tool-link" target="_blank">
+                            <h3 class="tool-title">Quick fixed text</h3>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Image Tools -->
+            <section class="category">
+                <h2 class="category-title">Image Tools</h2>
+                <div class="tools-grid">
+                    <div class="tool-card" data-category="image" data-name="Ai text to image generator">
+                        <a href="https://accessibleresource.github.io/Text-to-image-generator/" class="tool-link" target="_blank">
+                            <h3 class="tool-title">AI Text to Image Generator</h3>
+                        </a>
+                    </div>
+                    <div class="tool-card" data-category="image" data-name="Image to text converter">
+                        <a href="https://accessibleresource.github.io/Image-to-text/" class="tool-link" target="_blank">
+                            <h3 class="tool-title">Image to Text Converter</h3>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PDF Tools -->
+            <section class="category">
+                <h2 class="category-title">PDF Tools</h2>
+                <div class="tools-grid">
+                    <div class="tool-card" data-category="pdf" data-name="Text to pdf converter">
+                        <a href="https://accessibleresource.github.io/Convert-text-to-pdf/" class="tool-link" target="_blank">
+                            <h3 class="tool-title">Text to PDF Converter</h3>
+                        </a>
+                    </div>
+                    <div class="tool-card" data-category="pdf" data-name="Pdf to text converter">
+                        <a href="https://accessibleresource.github.io/Pdf-to-text/" class="tool-link" target="_blank">
+                            <h3 class="tool-title">PDF to Text Converter</h3>
+                        </a>
+                    </div>
+                    <div class="tool-card" data-category="pdf" data-name="Pdf merger">
+                        <a href="https://accessibleresource.github.io/Pdf-merger/" class="tool-link" target="_blank">
+                            <h3 class="tool-title">PDF Merger</h3>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Security Tools -->
+            <section class="category">
+                <h2 class="category-title">Security Tools</h2>
+                <div class="tools-grid">
+                    <div class="tool-card" data-category="security" data-name="Strong password generator">
+                        <a href="https://accessibleresource.github.io/Password-generator/" class="tool-link" target="_blank">
+                            <h3 class="tool-title">Strong Password Generator</h3>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Calculator Tools -->
+            <section class="category">
+                <h2 class="category-title">Calculator Tools</h2>
+                <div class="tools-grid">
+                    <div class="tool-card" data-category="calculator" data-name="Simple calculator">
+                        <a href="https://accessibleresource.github.io/Simple-calculator/" class="tool-link" target="_blank">
+                            <h3 class="tool-title">Simple Calculator</h3>
+                        </a>
+                    </div>
+                    <div class="tool-card" data-category="calculator" data-name="Age Calculator">
+                        <a href="https://accessibleresource.github.io/Age-Calculator-/" class="tool-link" target="_blank">
+                            <h3 class="tool-title">Age Calculator</h3>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Generator Tools -->
+            <section class="category">
+                <h2 class="category-title">Generator Tools</h2>
+                <div class="tools-grid">
+                    <div class="tool-card" data-category="generator" data-name="Baby name generator">
+                        <a href="https://accessibleresource.github.io/Baby-name-generator/" class="tool-link" target="_blank">
+                            <h3 class="tool-title">Baby Name Generator</h3>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Game Tools -->
+            <section class="category">
+                <h2 class="category-title">Game Tools</h2>
+                <div class="tools-grid">
+                    <div class="tool-card" data-category="game" data-name="Math quiz game">
+                        <a href="https://accessibleresource.github.io/Math-quiz-game/" class="tool-link" target="_blank">
+                            <h3 class="tool-title">Math Quiz Game</h3>
+                        </a>
+                    </div>
+                    <div class="tool-card" data-category="game" data-name="Quiz game">
+                        <a href="https://accessibleresource.github.io/Quiz-game/" class="tool-link" target="_blank">
+                            <h3 class="tool-title">Quiz Game</h3>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- AI Tools -->
+            <section class="category">
+                <h2 class="category-title">AI Tools</h2>
+                <div class="tools-grid">
+                    <div class="tool-card" data-category="ai" data-name="Accessible ai chatbot">
+                        <a href="https://accessibleresource.github.io/Accessible-ai-chat-bot/" class="tool-link" target="_blank">
+                            <h3 class="tool-title">Accessible AI Chatbot</h3>
+                        </a>
+                    </div>
+                    <div class="tool-card" data-category="ai" data-name="Accessible resource ai chatbot">
+                        <a href="https://accessibleresource.github.io/Accessible-resource-chat/" class="tool-link" target="_blank">
+                            <h3 class="tool-title">Accessible Resource AI Chatbot</h3>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Conversion Tools -->
+            <section class="category">
+                <h2 class="category-title">Conversion Tools</h2>
+                <div class="tools-grid">
+                    <div class="tool-card" data-category="conversion" data-name="Global time converter">
+                        <a href="https://accessibleresource.github.io/Time-converter/" class="tool-link" target="_blank">
+                            <h3 class="tool-title">Global Time Converter</h3>
+                        </a>
+                    </div>
+                </div>
+            </section>
         </div>
-    </footer>
+    </div>
 
     <script>
-        // Website data with all tools including the new Currency Converter
-        const categories = [
-            {
-                name: "Text Tools",
-                icon: "fas fa-font",
-                links: [
-                    { name: "Text Analyser Pro", url: "https://accessibleresource.github.io/Text-analyser-pro/" },
-                    { name: "Universal Text Encoder & Decoder", url: "https://accessibleresource.github.io/Universal-Text-Encoder-Decoder/" },
-                    { name: "Text to PDF Converter", url: "https://accessibleresource.github.io/Convert-text-to-pdf/" },
-                    { name: "PDF to Text Converter", url: "https://accessibleresource.github.io/Pdf-to-text/" },
-                    { name: "Image to Text Converter", url: "https://accessibleresource.github.io/Image-to-text/" }
-                ]
-            },
-            {
-                name: "Generators",
-                icon: "fas fa-cogs",
-                links: [
-                    { name: "AI Text to Image Generator", url: "https://accessibleresource.github.io/Text-to-image-generator/" },
-                    { name: "Strong Password Generator", url: "https://accessibleresource.github.io/Password-generator/" },
-                    { name: "Baby Name Generator", url: "https://accessibleresource.github.io/Baby-name-generator/" }
-                ]
-            },
-            {
-                name: "Calculators",
-                icon: "fas fa-calculator",
-                links: [
-                    { name: "Simple Calculator", url: "https://accessibleresource.github.io/Simple-calculator/" },
-                    { name: "Currency Converter", url: "https://accessibleresource.github.io/Currency-converter/" }
-                ]
-            },
-            {
-                name: "Games",
-                icon: "fas fa-gamepad",
-                links: [
-                    { name: "Math Quiz Game", url: "https://accessibleresource.github.io/Math-quiz-game/" },
-                    { name: "Quiz Game", url: "https://accessibleresource.github.io/Quiz-game/" }
-                ]
-            },
-            {
-                name: "PDF Tools",
-                icon: "fas fa-file-pdf",
-                links: [
-                    { name: "PDF Merger", url: "https://accessibleresource.github.io/Pdf-merger/" }
-                ]
-            },
-            {
-                name: "Community",
-                icon: "fas fa-users",
-                links: [
-                    { name: "Telegram Channel", url: "https://t.me/shopnotamal" }
-                ]
-            }
-        ];
+        // Dark/Light Mode Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const body = document.body;
 
-        // DOM elements
-        const categoriesContainer = document.getElementById('categories');
-        const searchBar = document.getElementById('search-bar');
-        const darkModeToggle = document.getElementById('dark-mode-toggle');
-        const scrollTopButton = document.getElementById('scroll-top');
-        const feedbackForm = document.getElementById('feedback-form');
-
-        // Initialize the page
-        function initPage() {
-            renderCategories(categories);
-            setupEventListeners();
-            checkScrollPosition();
-            
-            // Load dark mode preference from localStorage
-            if (localStorage.getItem('darkMode') === 'enabled') {
-                document.body.classList.add('dark-mode');
-                darkModeToggle.innerHTML = '<i class="fas fa-sun"></i> Toggle Light Mode';
-            }
+        // Check for saved theme preference or use preferred color scheme
+        const savedTheme = localStorage.getItem('theme') || 
+                          (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        
+        // Apply the saved theme
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-mode');
+            themeIcon.textContent = '☀️';
+            themeToggle.textContent = 'Light Mode';
         }
 
-        // Render all categories
-        function renderCategories(categoriesData) {
-            categoriesContainer.innerHTML = '';
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            const isDarkMode = body.classList.contains('dark-mode');
             
-            if (categoriesData.length === 0) {
-                categoriesContainer.innerHTML = '<div class="no-results">No results found. Try a different search term.</div>';
-                return;
-            }
-            
-            categoriesData.forEach((category, index) => {
-                const categoryElement = document.createElement('div');
-                categoryElement.className = 'category';
-                
-                let linksHTML = '';
-                category.links.forEach(link => {
-                    linksHTML += `
-                        <li>
-                            <a href="${link.url}" target="_blank" rel="noopener noreferrer">
-                                <i class="fas fa-external-link-alt"></i> ${link.name}
-                            </a>
-                        </li>
-                    `;
-                });
-                
-                categoryElement.innerHTML = `
-                    <h2><i class="${category.icon}"></i> ${category.name}</h2>
-                    <ul>${linksHTML}</ul>
-                `;
-                
-                categoriesContainer.appendChild(categoryElement);
-            });
-        }
-
-        // Setup event listeners
-        function setupEventListeners() {
-            // Search functionality
-            searchBar.addEventListener('input', () => {
-                const searchTerm = searchBar.value.toLowerCase();
-                
-                if (searchTerm.length === 0) {
-                    renderCategories(categories);
-                    return;
-                }
-                
-                const filteredCategories = categories.map(category => {
-                    const matchingLinks = category.links.filter(link => 
-                        link.name.toLowerCase().includes(searchTerm) || 
-                        category.name.toLowerCase().includes(searchTerm)
-                    );
-                    
-                    return {
-                        ...category,
-                        links: matchingLinks
-                    };
-                }).filter(category => category.links.length > 0);
-                
-                renderCategories(filteredCategories);
-            });
-            
-            // Dark mode toggle
-            darkModeToggle.addEventListener('click', () => {
-                document.body.classList.toggle('dark-mode');
-                
-                if (document.body.classList.contains('dark-mode')) {
-                    localStorage.setItem('darkMode', 'enabled');
-                    darkModeToggle.innerHTML = '<i class="fas fa-sun"></i> Toggle Light Mode';
-                } else {
-                    localStorage.setItem('darkMode', 'disabled');
-                    darkModeToggle.innerHTML = '<i class="fas fa-moon"></i> Toggle Dark Mode';
-                }
-            });
-            
-            // Scroll to top button
-            scrollTopButton.addEventListener('click', () => {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            });
-            
-            // Feedback form submission
-            feedbackForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const feedbackText = document.getElementById('feedback').value;
-                
-                if (feedbackText.trim() === '') {
-                    alert('Please enter your feedback before submitting.');
-                    return;
-                }
-                
-                // In a real application, you would send this to a server
-                console.log('Feedback submitted:', feedbackText);
-                alert('Thank you for your feedback! We appreciate your input.');
-                document.getElementById('feedback').value = '';
-            });
-            
-            // Show/hide scroll to top button based on scroll position
-            window.addEventListener('scroll', checkScrollPosition);
-        }
-
-        // Check scroll position for scroll-to-top button
-        function checkScrollPosition() {
-            if (window.pageYOffset > 300) {
-                scrollTopButton.style.display = 'flex';
+            if (isDarkMode) {
+                themeIcon.textContent = '☀️';
+                themeToggle.textContent = 'Light Mode';
+                localStorage.setItem('theme', 'dark');
             } else {
-                scrollTopButton.style.display = 'none';
+                themeIcon.textContent = '🌙';
+                themeToggle.textContent = 'Dark Mode';
+                localStorage.setItem('theme', 'light');
             }
-        }
+        });
 
-        // Initialize the page when DOM is loaded
-        document.addEventListener('DOMContentLoaded', initPage);
+        // Search Functionality
+        const searchInput = document.getElementById('search');
+        const toolCards = document.querySelectorAll('.tool-card');
+        const categories = document.querySelectorAll('.category');
+
+        searchInput.addEventListener('input', () => {
+            const searchTerm = searchInput.value.toLowerCase();
+            let hasResults = false;
+            
+            categories.forEach(category => {
+                const toolsInCategory = category.querySelectorAll('.tool-card');
+                let categoryHasResults = false;
+                
+                toolsInCategory.forEach(card => {
+                    const toolName = card.getAttribute('data-name').toLowerCase();
+                    const toolCategory = card.getAttribute('data-category').toLowerCase();
+                    
+                    if (toolName.includes(searchTerm) || toolCategory.includes(searchTerm)) {
+                        card.style.display = 'block';
+                        categoryHasResults = true;
+                        hasResults = true;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+                
+                // Show/hide category based on results
+                category.style.display = categoryHasResults ? 'block' : 'none';
+            });
+            
+            // Show no results message if no matches found
+            const noResults = document.querySelector('.no-results');
+            if (!hasResults && searchTerm) {
+                if (!noResults) {
+                    const noResultsDiv = document.createElement('div');
+                    noResultsDiv.className = 'no-results';
+                    noResultsDiv.textContent = 'No tools found matching your search.';
+                    document.getElementById('toolsContainer').appendChild(noResultsDiv);
+                }
+            } else if (noResults) {
+                noResults.remove();
+            }
+            
+            // Show all if search is empty
+            if (!searchTerm) {
+                categories.forEach(category => {
+                    category.style.display = 'block';
+                    category.querySelectorAll('.tool-card').forEach(card => {
+                        card.style.display = 'block';
+                    });
+                });
+                
+                if (noResults) {
+                    noResults.remove();
+                }
+            }
+        });
     </script>
 </body>
 </html>
