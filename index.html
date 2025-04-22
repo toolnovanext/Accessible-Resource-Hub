@@ -1,452 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ToolNova Pro | Your All-in-One Tool Hub</title>
-    <style>
-        :root {
-            --primary-color: #4a6bff;
-            --text-color: #333;
-            --bg-color: #f5f7ff;
-            --card-bg: #ffffff;
-            --header-bg: #ffffff;
-            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s ease;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gaming Tools Zone</title>
+  <style>
+    :root {
+      --bg-color: #121212;
+      --text-color: #ffffff;
+      --card-color: #1e1e1e;
+    }
 
-        .dark-mode {
-            --primary-color: #6b8cff;
-            --text-color: #f0f0f0;
-            --bg-color: #121212;
-            --card-bg: #1e1e1e;
-            --header-bg: #1a1a1a;
-            --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-        }
+    body.light {
+      --bg-color: #f2f2f2;
+      --text-color: #121212;
+      --card-color: #ffffff;
+    }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            transition: var(--transition);
-        }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: all 0.3s ease;
+    }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-        }
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+    }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+    h1 {
+      text-align: center;
+      margin-bottom: 10px;
+      font-size: 2.5rem;
+    }
 
-        header {
-            background-color: var(--header-bg);
-            padding: 20px 0;
-            box-shadow: var(--shadow);
-            margin-bottom: 30px;
-        }
+    .welcome {
+      text-align: center;
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+    }
 
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    .toggle-theme {
+      text-align: center;
+      margin-bottom: 20px;
+    }
 
-        h1 {
-            color: var(--primary-color);
-            font-size: 2.2rem;
-            margin-bottom: 10px;
-        }
+    .search-box {
+      text-align: center;
+      margin-bottom: 30px;
+    }
 
-        .welcome-section {
-            text-align: center;
-            padding: 40px 20px;
-            background-color: var(--card-bg);
-            border-radius: 10px;
-            box-shadow: var(--shadow);
-            margin-bottom: 40px;
-        }
+    .search-box input {
+      width: 80%;
+      padding: 10px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 5px;
+    }
 
-        .welcome-text {
-            max-width: 800px;
-            margin: 0 auto 25px;
-            font-size: 1.1rem;
-            color: var(--text-color);
-        }
+    .tool-card {
+      background-color: var(--card-color);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s;
+      text-align: center;
+    }
 
-        .search-container {
-            margin: 20px auto;
-            max-width: 600px;
-        }
+    .tool-card:hover {
+      transform: scale(1.02);
+    }
 
-        #search {
-            width: 100%;
-            padding: 12px 20px;
-            border: 2px solid var(--primary-color);
-            border-radius: 30px;
-            font-size: 1rem;
-            background-color: var(--card-bg);
-            color: var(--text-color);
-        }
+    .tool-title a {
+      font-size: 1.5rem;
+      text-decoration: none;
+      color: #4da6ff;
+      font-weight: bold;
+      display: inline-block;
+    }
 
-        #search:focus {
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(74, 107, 255, 0.3);
-        }
+    .tool-title a:hover {
+      text-decoration: underline;
+    }
 
-        .theme-toggle {
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 30px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 600;
-        }
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 26px;
+    }
 
-        .theme-toggle:hover {
-            opacity: 0.9;
-        }
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
 
-        .category {
-            margin-bottom: 40px;
-        }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0; left: 0;
+      right: 0; bottom: 0;
+      background-color: #ccc;
+      transition: 0.4s;
+      border-radius: 34px;
+    }
 
-        .category-title {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            color: var(--primary-color);
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--primary-color);
-        }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 20px; width: 20px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: 0.4s;
+      border-radius: 50%;
+    }
 
-        .tools-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
-        }
+    input:checked + .slider {
+      background-color: #4da6ff;
+    }
 
-        .tool-card {
-            background-color: var(--card-bg);
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: var(--shadow);
-            transition: transform 0.2s ease;
-        }
-
-        .tool-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .tool-title {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-            color: var(--primary-color);
-        }
-
-        .tool-link {
-            text-decoration: none;
-            color: inherit;
-            display: block;
-        }
-
-        .tool-link:hover .tool-title {
-            text-decoration: underline;
-        }
-
-        .no-results {
-            text-align: center;
-            padding: 40px;
-            font-size: 1.2rem;
-            grid-column: 1 / -1;
-        }
-
-        @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            h1 {
-                font-size: 1.8rem;
-            }
-
-            .tools-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    input:checked + .slider:before {
+      transform: translateX(24px);
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <div class="container header-content">
-            <h1>ToolNova Pro</h1>
-            <button class="theme-toggle" id="themeToggle">
-                <span id="themeIcon">🌙</span> Dark Mode
-            </button>
-        </div>
-    </header>
-
-    <div class="container">
-        <section class="welcome-section">
-            <h1>Welcome to ToolNova Pro</h1>
-            <p class="welcome-text">
-                This application has been created by Accessible Resource. Your all-in-one tool hub for a seamless experience. 
-                Explore all tools and share your feedback. With your love and support, many more tools will be added in the future.
-            </p>
-            <div class="search-container">
-                <input type="text" id="search" placeholder="Search tools by name or category...">
-            </div>
-        </section>
-
-        <div id="toolsContainer">
-            <!-- Text Tools -->
-            <section class="category">
-                <h2 class="category-title">Text Tools</h2>
-                <div class="tools-grid">
-                    <div class="tool-card" data-category="text" data-name="Text analyser pro">
-                        <a href="https://accessibleresource.github.io/Text-analyser-pro/" class="tool-link" target="_blank">
-                            <h3 class="tool-title">Text analyser pro</h3>
-                        </a>
-                    </div>
-                    <div class="tool-card" data-category="text" data-name="Universal Text Encoder & Decoder">
-                        <a href="https://accessibleresource.github.io/Universal-Text-Encoder-Decoder/" class="tool-link" target="_blank">
-                            <h3 class="tool-title">Universal Text Encoder & Decoder</h3>
-                        </a>
-                    </div>
-                    <div class="tool-card" data-category="text" data-name="Quick fixed text">
-                        <a href="https://accessibleresource.github.io/Quick-fixed-text/" class="tool-link" target="_blank">
-                            <h3 class="tool-title">Quick fixed text</h3>
-                        </a>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Image Tools -->
-            <section class="category">
-                <h2 class="category-title">Image Tools</h2>
-                <div class="tools-grid">
-                    <div class="tool-card" data-category="image" data-name="Ai text to image generator">
-                        <a href="https://accessibleresource.github.io/Text-to-image-generator/" class="tool-link" target="_blank">
-                            <h3 class="tool-title">AI Text to Image Generator</h3>
-                        </a>
-                    </div>
-                    <div class="tool-card" data-category="image" data-name="Image to text converter">
-                        <a href="https://accessibleresource.github.io/Image-to-text/" class="tool-link" target="_blank">
-                            <h3 class="tool-title">Image to Text Converter</h3>
-                        </a>
-                    </div>
-                </div>
-            </section>
-
-            <!-- PDF Tools -->
-            <section class="category">
-                <h2 class="category-title">PDF Tools</h2>
-                <div class="tools-grid">
-                    <div class="tool-card" data-category="pdf" data-name="Text to pdf converter">
-                        <a href="https://accessibleresource.github.io/Convert-text-to-pdf/" class="tool-link" target="_blank">
-                            <h3 class="tool-title">Text to PDF Converter</h3>
-                        </a>
-                    </div>
-                    <div class="tool-card" data-category="pdf" data-name="Pdf to text converter">
-                        <a href="https://accessibleresource.github.io/Pdf-to-text/" class="tool-link" target="_blank">
-                            <h3 class="tool-title">PDF to Text Converter</h3>
-                        </a>
-                    </div>
-                    <div class="tool-card" data-category="pdf" data-name="Pdf merger">
-                        <a href="https://accessibleresource.github.io/Pdf-merger/" class="tool-link" target="_blank">
-                            <h3 class="tool-title">PDF Merger</h3>
-                        </a>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Security Tools -->
-            <section class="category">
-                <h2 class="category-title">Security Tools</h2>
-                <div class="tools-grid">
-                    <div class="tool-card" data-category="security" data-name="Strong password generator">
-                        <a href="https://accessibleresource.github.io/Password-generator/" class="tool-link" target="_blank">
-                            <h3 class="tool-title">Strong Password Generator</h3>
-                        </a>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Calculator Tools -->
-            <section class="category">
-                <h2 class="category-title">Calculator Tools</h2>
-                <div class="tools-grid">
-                    <div class="tool-card" data-category="calculator" data-name="Simple calculator">
-                        <a href="https://accessibleresource.github.io/Simple-calculator/" class="tool-link" target="_blank">
-                            <h3 class="tool-title">Simple Calculator</h3>
-                        </a>
-                    </div>
-                    <div class="tool-card" data-category="calculator" data-name="Age Calculator">
-                        <a href="https://accessibleresource.github.io/Age-Calculator-/" class="tool-link" target="_blank">
-                            <h3 class="tool-title">Age Calculator</h3>
-                        </a>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Generator Tools -->
-            <section class="category">
-                <h2 class="category-title">Generator Tools</h2>
-                <div class="tools-grid">
-                    <div class="tool-card" data-category="generator" data-name="Baby name generator">
-                        <a href="https://accessibleresource.github.io/Baby-name-generator/" class="tool-link" target="_blank">
-                            <h3 class="tool-title">Baby Name Generator</h3>
-                        </a>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Game Tools -->
-            <section class="category">
-                <h2 class="category-title">Game Tools</h2>
-                <div class="tools-grid">
-                    <div class="tool-card" data-category="game" data-name="Math quiz game">
-                        <a href="https://accessibleresource.github.io/Math-quiz-game/" class="tool-link" target="_blank">
-                            <h3 class="tool-title">Math Quiz Game</h3>
-                        </a>
-                    </div>
-                    <div class="tool-card" data-category="game" data-name="Quiz game">
-                        <a href="https://accessibleresource.github.io/Quiz-game/" class="tool-link" target="_blank">
-                            <h3 class="tool-title">Quiz Game</h3>
-                        </a>
-                    </div>
-                </div>
-            </section>
-
-            <!-- AI Tools -->
-            <section class="category">
-                <h2 class="category-title">AI Tools</h2>
-                <div class="tools-grid">
-                    <div class="tool-card" data-category="ai" data-name="Accessible ai chatbot">
-                        <a href="https://accessibleresource.github.io/Accessible-ai-chat-bot/" class="tool-link" target="_blank">
-                            <h3 class="tool-title">Accessible AI Chatbot</h3>
-                        </a>
-                    </div>
-                    <div class="tool-card" data-category="ai" data-name="Accessible resource ai chatbot">
-                        <a href="https://accessibleresource.github.io/Accessible-resource-chat/" class="tool-link" target="_blank">
-                            <h3 class="tool-title">Accessible Resource AI Chatbot</h3>
-                        </a>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Conversion Tools -->
-            <section class="category">
-                <h2 class="category-title">Conversion Tools</h2>
-                <div class="tools-grid">
-                    <div class="tool-card" data-category="conversion" data-name="Global time converter">
-                        <a href="https://accessibleresource.github.io/Time-converter/" class="tool-link" target="_blank">
-                            <h3 class="tool-title">Global Time Converter</h3>
-                        </a>
-                    </div>
-                </div>
-            </section>
-        </div>
+  <div class="container">
+    <h1>Gaming Tools Zone</h1>
+    <div class="welcome">
+      Welcome to our exclusive gaming tools section! <br />
+      From <strong>S M Ripon</strong> and the team at <strong>Accessible Resource</strong>.
     </div>
 
-    <script>
-        // Dark/Light Mode Toggle
-        const themeToggle = document.getElementById('themeToggle');
-        const themeIcon = document.getElementById('themeIcon');
-        const body = document.body;
+    <div class="toggle-theme">
+      <label class="switch">
+        <input type="checkbox" id="themeToggle" />
+        <span class="slider"></span>
+      </label>
+      <p>Toggle Light/Dark Mode</p>
+    </div>
 
-        // Check for saved theme preference or use preferred color scheme
-        const savedTheme = localStorage.getItem('theme') || 
-                          (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-        
-        // Apply the saved theme
-        if (savedTheme === 'dark') {
-            body.classList.add('dark-mode');
-            themeIcon.textContent = '☀️';
-            themeToggle.textContent = 'Light Mode';
-        }
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Search games..." />
+    </div>
 
-        themeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
-            const isDarkMode = body.classList.contains('dark-mode');
-            
-            if (isDarkMode) {
-                themeIcon.textContent = '☀️';
-                themeToggle.textContent = 'Light Mode';
-                localStorage.setItem('theme', 'dark');
-            } else {
-                themeIcon.textContent = '🌙';
-                themeToggle.textContent = 'Dark Mode';
-                localStorage.setItem('theme', 'light');
-            }
-        });
+    <div id="toolsList">
+      <div class="tool-card">
+        <div class="tool-title">
+          <a href="https://accessibleresource.github.io/Math-quiz-game/" target="_blank">
+            Math Quiz Game
+          </a>
+        </div>
+      </div>
 
-        // Search Functionality
-        const searchInput = document.getElementById('search');
-        const toolCards = document.querySelectorAll('.tool-card');
-        const categories = document.querySelectorAll('.category');
+      <div class="tool-card">
+        <div class="tool-title">
+          <a href="https://accessibleresource.github.io/Quiz-game/" target="_blank">
+            Flash Quiz Adventure
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 
-        searchInput.addEventListener('input', () => {
-            const searchTerm = searchInput.value.toLowerCase();
-            let hasResults = false;
-            
-            categories.forEach(category => {
-                const toolsInCategory = category.querySelectorAll('.tool-card');
-                let categoryHasResults = false;
-                
-                toolsInCategory.forEach(card => {
-                    const toolName = card.getAttribute('data-name').toLowerCase();
-                    const toolCategory = card.getAttribute('data-category').toLowerCase();
-                    
-                    if (toolName.includes(searchTerm) || toolCategory.includes(searchTerm)) {
-                        card.style.display = 'block';
-                        categoryHasResults = true;
-                        hasResults = true;
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
-                
-                // Show/hide category based on results
-                category.style.display = categoryHasResults ? 'block' : 'none';
-            });
-            
-            // Show no results message if no matches found
-            const noResults = document.querySelector('.no-results');
-            if (!hasResults && searchTerm) {
-                if (!noResults) {
-                    const noResultsDiv = document.createElement('div');
-                    noResultsDiv.className = 'no-results';
-                    noResultsDiv.textContent = 'No tools found matching your search.';
-                    document.getElementById('toolsContainer').appendChild(noResultsDiv);
-                }
-            } else if (noResults) {
-                noResults.remove();
-            }
-            
-            // Show all if search is empty
-            if (!searchTerm) {
-                categories.forEach(category => {
-                    category.style.display = 'block';
-                    category.querySelectorAll('.tool-card').forEach(card => {
-                        card.style.display = 'block';
-                    });
-                });
-                
-                if (noResults) {
-                    noResults.remove();
-                }
-            }
-        });
-    </script>
+  <script>
+    const themeToggle = document.getElementById("themeToggle");
+    themeToggle.addEventListener("change", () => {
+      document.body.classList.toggle("light");
+    });
+
+    const searchInput = document.getElementById("searchInput");
+    const toolCards = document.querySelectorAll(".tool-card");
+
+    searchInput.addEventListener("input", () => {
+      const searchTerm = searchInput.value.toLowerCase();
+      toolCards.forEach((card) => {
+        const title = card.querySelector(".tool-title").textContent.toLowerCase();
+        card.style.display = title.includes(searchTerm) ? "block" : "none";
+      });
+    });
+  </script>
 </body>
 </html>
