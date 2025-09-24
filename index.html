@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Gaming Tools Zone</title>
+  <script src="https://toolnovanext.github.io/scripts/navigation.js" defer></script>
+  <script src="https://toolnovanext.github.io/scripts/notification.js" defer></script>
   <style>
     :root {
       --bg-color: #121212;
@@ -133,27 +135,11 @@
 <body>
   <div class="container">
     <h1>Gaming Tools Zone</h1>
-    <div class="welcome">
-      Welcome to our exclusive gaming tools section! <br />
-      From <strong>S M Ripon</strong> and the team at <strong>Accessible Resource</strong>.
-    </div>
-
-    <div class="toggle-theme">
-      <label class="switch">
-        <input type="checkbox" id="themeToggle" />
-        <span class="slider"></span>
-      </label>
-      <p>Toggle Light/Dark Mode</p>
-    </div>
-
-    <div class="search-box">
-      <input type="text" id="searchInput" placeholder="Search games..." />
-    </div>
 
     <div id="toolsList">
       <div class="tool-card">
         <div class="tool-title">
-          <a href="https://accessibleresource.github.io/Math-quiz-game/" target="_blank">
+          <a href="https://toolnovanext.github.io/Math-quiz-game/" target="_blank">
             Math Quiz Game
           </a>
         </div>
@@ -161,30 +147,12 @@
 
       <div class="tool-card">
         <div class="tool-title">
-          <a href="https://accessibleresource.github.io/Quiz-game/" target="_blank">
+          <a href="https://toolnovanext.github.io/Quiz-game/" target="_blank">
             Flash Quiz Adventure
           </a>
         </div>
       </div>
     </div>
   </div>
-
-  <script>
-    const themeToggle = document.getElementById("themeToggle");
-    themeToggle.addEventListener("change", () => {
-      document.body.classList.toggle("light");
-    });
-
-    const searchInput = document.getElementById("searchInput");
-    const toolCards = document.querySelectorAll(".tool-card");
-
-    searchInput.addEventListener("input", () => {
-      const searchTerm = searchInput.value.toLowerCase();
-      toolCards.forEach((card) => {
-        const title = card.querySelector(".tool-title").textContent.toLowerCase();
-        card.style.display = title.includes(searchTerm) ? "block" : "none";
-      });
-    });
-  </script>
 </body>
 </html>
